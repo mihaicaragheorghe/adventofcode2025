@@ -1,12 +1,13 @@
+import time
+
+
 def solve(rotations: list[str]) -> int:
     pos = 50
     clicks = 0
-
     for rotation in rotations:
         dir = rotation[0]
         count = int(rotation[1:])
         pos, clicks = rotate(pos, dir, count, clicks)
-
     return clicks
 
 
@@ -40,6 +41,11 @@ def rotate(pos: int, dir: str, count: int, clicks: int) -> tuple[int, int]:
 
 
 if __name__ == "__main__":
-    with open("day01/input.txt", "r") as f:
-        data = f.read()
-    print(solve(data.split("\n")))
+    with open("day01/input.txt") as f:
+        data = f.readlines()
+    start = time.perf_counter()
+    print(solve(data))
+    end = time.perf_counter()
+
+    elapsed_ms = (end - start) * 1000
+    print(f"{elapsed_ms:.2f} ms")

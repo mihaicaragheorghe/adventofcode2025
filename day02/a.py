@@ -24,10 +24,11 @@ def is_invalid(n: int) -> bool:
 
 
 if __name__ == "__main__":
-    with open("day02/input.txt", "r") as f:
+    with open("day02/input.txt") as f:
         data = f.read()
     start = time.perf_counter()
     print(solve(data.split(",")))
     end = time.perf_counter()
+
     elapsed_ms = (end - start) * 1000
     print(f"{elapsed_ms:.2f} ms")
