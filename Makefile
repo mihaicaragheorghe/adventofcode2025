@@ -11,6 +11,14 @@ d%:
 	@echo "Running Day $* - Part B:"
 	@python3 day$(shell printf "%02d" $*)/b.py
 
+all:
+	@for day in $(shell seq 1 12); do \
+		if [ -d day$$(printf "%02d" $$day) ]; then \
+			$(MAKE) d$$day; \
+			echo ""; \
+		fi \
+	done
+
 .PHONY: help
 help:
 	@echo "Advent of Code 2025"
