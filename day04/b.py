@@ -15,24 +15,24 @@ DIRECTIONS = [NW, N, NE, W, E, SW, S, SE]
 
 
 def solve(grid: list[str]) -> int:
-    removed_count = 0
-    removed_items = []
+    removed = 0
+    to_remove = []
     for y, _ in enumerate(grid):
         for x, c in enumerate(grid[y]):
-            if c == "@" and find_neighbors(grid, y, x) < 4:
-                removed_count += 1
-                removed_items.append((y, x))
+            if c == "@" and count_neighbors(grid, y, x) < 4:
+                removed += 1
+                to_remove.append((y, x))
 
-    for item in removed_items:
+    for item in to_remove:
         remove(grid, item[0], item[1])
 
-    if removed_count > 0:
-        removed_count += solve(grid)
+    if removed > 0:
+        removed += solve(grid)
 
-    return removed_count
+    return removed
 
 
-def find_neighbors(grid: list[str], y: int, x: int) -> int:
+def count_neighbors(grid: list[str], y: int, x: int) -> int:
     neighbors = 0
     for dy, dx in DIRECTIONS:
         if is_roll(grid, y + dy, x + dx):
@@ -51,13 +51,17 @@ def remove(grid: list[str], y: int, x: int):
     grid[y] = s
 
 
-if __name__ == "__main__":
+def main():
     with open("day04/input.txt") as f:
         data = f.read()
-
     start = time.perf_counter()
-    print(solve(data.splitlines()))
+    result = solve(data.splitlines())
     end = time.perf_counter()
-
     elapsed_ms = (end - start) * 1000
+
+    print(result)
     print(f"{elapsed_ms:.2f} ms")
+
+
+if __name__ == "__main__":
+    main()

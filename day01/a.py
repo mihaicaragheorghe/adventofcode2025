@@ -23,7 +23,7 @@ def rotate(src: int, dir: str, count: int) -> int:
     return src % 100
 
 
-if __name__ == "__main__":
+def main():
     with open("day01/input.txt") as f:
         data = f.readlines()
     start = time.perf_counter()
@@ -32,3 +32,7 @@ if __name__ == "__main__":
 
     elapsed_ms = (end - start) * 1000
     print(f"{elapsed_ms:.2f} ms")
+
+
+if __name__ == "__main__":
+    main()

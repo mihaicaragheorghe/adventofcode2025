@@ -17,12 +17,12 @@ def solve(grid: list[str]) -> int:
     accessible = 0
     for y, _ in enumerate(grid):
         for x, c in enumerate(grid[y]):
-            if c == "@" and find_neighbors(grid, y, x) < 4:
+            if c == "@" and count_neighbors(grid, y, x) < 4:
                 accessible += 1
     return accessible
 
 
-def find_neighbors(grid: list[str], y: int, x: int) -> int:
+def count_neighbors(grid: list[str], y: int, x: int) -> int:
     neighbors = 0
     for dy, dx in DIRECTIONS:
         if is_roll(grid, y + dy, x + dx):
@@ -36,13 +36,17 @@ def is_roll(grid: list[str], y: int, x: int) -> bool:
     return grid[y][x] == "@"
 
 
-if __name__ == "__main__":
+def main():
     with open("day04/input.txt") as f:
         data = f.read()
-
     start = time.perf_counter()
-    print(solve(data.splitlines()))
+    result = solve(data.splitlines())
     end = time.perf_counter()
-
     elapsed_ms = (end - start) * 1000
+
+    print(result)
     print(f"{elapsed_ms:.2f} ms")
+
+
+if __name__ == "__main__":
+    main()

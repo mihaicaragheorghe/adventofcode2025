@@ -30,12 +30,17 @@ def find_largest_joltage(bank: str, start: int, end) -> int:
     return max_idx
 
 
-if __name__ == "__main__":
+def main():
     with open("day03/input.txt") as f:
         data = f.read().splitlines()
     start = time.perf_counter()
-    print(solve(data))
+    result = solve(data)
     end = time.perf_counter()
-
     elapsed_ms = (end - start) * 1000
+
+    print(result)
     print(f"{elapsed_ms:.2f} ms")
+
+
+if __name__ == "__main__":
+    main()
